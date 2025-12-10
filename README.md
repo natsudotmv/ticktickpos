@@ -58,7 +58,7 @@ go mod tidy
 go run ./cmd/api/main.go
 ```
 - The API will automatically connect to PostgreSQL, run migrations, and seed the menu.
-4. Verify API is running:ß
+4. Verify API is running:
 ```bash
 curl http://localhost:8080/
 ```
