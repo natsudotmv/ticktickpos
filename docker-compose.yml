@@ -1,0 +1,27 @@
+services:
+  goapp:
+    container_name: ticktickpos-api
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: air
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./server:/app
+    working_dir: /app
+
+  postgres:
+    image: postgres:latest
+    container_name: ticktickpos-postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ticktickpos-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:

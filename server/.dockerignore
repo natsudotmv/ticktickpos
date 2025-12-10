@@ -1,0 +1,25 @@
+# Exclude version control metadata
+.git
+.gitignore
+
+# Exclude editor/IDE settings
+.vscode/
+.idea/
+
+# Exclude local build artifacts
+app
+*.exe
+*.test
+
+# Exclude environment files
+.env
+*.env
+
+# Exclude OS-specific garbage
+.DS_Store
+
+# Node modules (if present)
+node_modules/
+
+# Exclude Docker’s own output
+docker-compose.override.yml
