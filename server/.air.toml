@@ -1,0 +1,10 @@
+# Air configuration for hot reload
+[build]
+cmd = "go build -o app ./cmd/api/main.go"
+bin = "app"
+include_ext = ["go"]
+exclude_dir = ["vendor", "node_modules"]
+delay = 100
+
+[log]
+time = true

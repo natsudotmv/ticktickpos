@@ -24,9 +24,20 @@ profile.cov
 go.work
 go.work.sum
 
+# Air build binary
+app
+/tmp/
+
 # env file
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+.idea/
+.vscode/
+
+# TEMP
+.DS_Store
+README_temp.md
+
+# Logs
+*.log
