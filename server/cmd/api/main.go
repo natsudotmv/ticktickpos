@@ -22,6 +22,7 @@ func main() {
 	// Set up HTTP server and routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.HandleRoot)
+	mux.HandleFunc("/menu", handlers.GetMenu)
 
 	fmt.Println("Server listening on :8080")
 	http.ListenAndServe(":8080", mux)
