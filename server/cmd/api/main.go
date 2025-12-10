@@ -7,13 +7,17 @@ import (
 	"github.com/natsudotmv/ticktickpos/internal/config"
 	"github.com/natsudotmv/ticktickpos/internal/database"
 	"github.com/natsudotmv/ticktickpos/internal/handlers"
+	"github.com/natsudotmv/ticktickpos/internal/models"
 )
 
 func main() {
 	// Load configuration and connect to the database
 	cfg := config.LoadConfig()
-	db := database.ConnectPostgresDb(cfg)
-	database.RunMigrations(db, "internal/database/migrations.sql")
+	database.ConnectPostgredDb(cfg)
+
+	// Run migrations and seed the database
+	database.DB.AutoMigrate(&models.MenuCategory{}, &models.MenuItem{})
+	database.SeedDatabase()
 
 	// Set up HTTP server and routes
 	mux := http.NewServeMux()
