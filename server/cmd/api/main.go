@@ -12,9 +12,12 @@ import (
 var handleRoot = handlers.HandleRoot
 
 func main() {
+	// Load configuration and connect to the database
 	cfg := config.LoadConfig()
-	database.ConnectPostgresDb(cfg)
+	db := database.ConnectPostgresDb(cfg)
+	database.RunMigrations(db, "internal/database/migrations.sql")
 
+	// Set up HTTP server and routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handleRoot)
 
