@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/natsudotmv/ticktickpos/internal/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func SeedDatabase() {
@@ -40,6 +41,22 @@ func SeedDatabase() {
 
 	for i := range items {
 		DB.Create(&items[i])
+	}
+
+	password := "000000"
+	hashedPin, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		log.Fatal("failed to hash pin:", err)
+	}
+
+	user := models.User{
+		Username: "admin",
+		PinHash:  string(hashedPin),
+		Role:     "admin",
+	}
+	result := DB.Where("username = ?", user.Username).FirstOrCreate(&user)
+	if result.Error != nil {
+		log.Fatal("failed to seed user:", result.Error)
 	}
 
 	log.Println("Database seeding completed")
