@@ -35,7 +35,7 @@ docker-compose up
 2. The Go API will automatically run migrations and seed the menu.
 3. Verify API is running:
 ```bash
-curl http://localhost:8080/
+curl http://localhost:8080/health
 ```
 Use `docker-compose down` to stop containers.
 
@@ -60,7 +60,7 @@ go run ./cmd/api/main.go
 - The API will automatically connect to PostgreSQL, run migrations, and seed the menu.
 4. Verify API is running:
 ```bash
-curl http://localhost:8080/
+curl http://localhost:8080/health
 ```
 ## Note
 - `DB_HOST` inside Docker must match the Postgres service name (`postgres`)
