@@ -29,15 +29,30 @@ Make sure this file is listed in `.gitignore` to avoid committing secrets.
 ```bash
 docker-compose up
 ```
-- goapp → runs the Go API with hot reload (Air)
-- postgres → runs the PostgreSQL database
+This will start three services:
+- **reactapp** → runs the React frontend on `http://localhost:5173` with hot reload (Vite)
+- **goapp** → runs the Go API on `http://localhost:8080` with hot reload (Air)
+- **postgres** → runs the PostgreSQL database
 
-2. The Go API will automatically run migrations and seed the menu.
-3. Verify API is running:
+2. The Go API will automatically run migrations and seed the database with menu items and a default admin user.
+
+3. Access the application:
+- **React Frontend**: `http://localhost:5173`
+- **Go API**: `http://localhost:8080`
+
+4. Verify API is running:
 ```bash
 curl http://localhost:8080/health
 ```
+
 Use `docker-compose down` to stop containers.
+
+### Default Login Credentials
+The database is seeded with a default admin user:
+- **Username**: `admin`
+- **PIN**: `000000` (six zeros)
+
+You can use these credentials to login to the POS system at the React frontend.
 
 
 ## Running Locally without Docker
