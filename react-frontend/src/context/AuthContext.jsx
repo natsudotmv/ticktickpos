@@ -5,16 +5,22 @@ import { setAuthToken, clearAuthToken } from "@/api/http";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
   const navigate = useNavigate();
+
+  const [token, setToken] = useState(
+    sessionStorage.getItem("authToken")
+  );
 
   const login = (jwt) => {
     setToken(jwt);
+    sessionStorage.setItem("authToken", jwt);
     navigate("/pos", { replace: true });
   };
 
   const logout = () => {
     setToken(null);
+    sessionStorage.removeItem("authToken");
+    clearAuthToken();
     navigate("/login", { replace: true });
   };
 
