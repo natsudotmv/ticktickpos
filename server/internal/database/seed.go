@@ -29,14 +29,14 @@ func SeedDatabase() {
 	}
 
 	items := []models.MenuItem{
-		{Name: "Coca Cola", Price: 1.99, CategoryId: categories[0].ID},
-		{Name: "Fanta", Price: 1.89, CategoryId: categories[0].ID},
-		{Name: "Sprite", Price: 1.79, CategoryId: categories[0].ID},
-		{Name: "Chiken Musroom Pizza", Price: 8.99, CategoryId: categories[1].ID},
-		{Name: "Tandoori Pizza", Price: 9.99, CategoryId: categories[1].ID},
-		{Name: "Chili Chicken Pizza", Price: 10.49, CategoryId: categories[1].ID},
-		{Name: "Chicken Burger", Price: 7.99, CategoryId: categories[2].ID},
-		{Name: "Beef Burger", Price: 6.99, CategoryId: categories[2].ID},
+		{Name: "Coca Cola", Price: 1.99, CategoryId: categories[0].ID, IsAvailable: true},
+		{Name: "Fanta", Price: 1.89, CategoryId: categories[0].ID, IsAvailable: false},
+		{Name: "Sprite", Price: 1.79, CategoryId: categories[0].ID, IsAvailable: true},
+		{Name: "Chiken Musroom Pizza", Price: 8.99, CategoryId: categories[1].ID, IsAvailable: true},
+		{Name: "Tandoori Pizza", Price: 9.99, CategoryId: categories[1].ID, IsAvailable: true},
+		{Name: "Chili Chicken Pizza", Price: 10.49, CategoryId: categories[1].ID, IsAvailable: true},
+		{Name: "Chicken Burger", Price: 7.99, CategoryId: categories[2].ID, IsAvailable: true},
+		{Name: "Beef Burger", Price: 6.99, CategoryId: categories[2].ID, IsAvailable: true},
 	}
 
 	for i := range items {
