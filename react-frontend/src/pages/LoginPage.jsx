@@ -21,10 +21,10 @@ import {
 } from '@/components/ui/select'
 
 const USERS = [
-    "Admin",
-    "Cashier",
-    "Manager",
-    "Staff",
+   { label: "Admin", value: "admin" },
+    { label: "Cashier", value: "cashier" },
+    { label: "Manager", value: "manager" },
+    { label: "Staff", value: "staff" },
 ];
 
 const LoginPage = () => {
@@ -39,7 +39,7 @@ const LoginPage = () => {
         e.preventDefault();
         setError("");
 
-        if (!username || !pin.length !== 6) {
+        if (!username || pin.length !== 6) {
             setError("Please select a user and enter 6-digit PIN.");
             return;
         }
@@ -52,9 +52,9 @@ const LoginPage = () => {
                 pin,
             });
 
-            const { token } = response.data;
-            login(token);
+            login(response.data.token);
         } catch (err) {
+            console.error(err);
             setError("Invalid credentials");
         } finally {
             setLoading(false);
@@ -79,8 +79,8 @@ const LoginPage = () => {
                                 <SelectContent>
                                     <SelectGroup>
                                         {USERS.map((user) => (
-                                            <SelectItem key={user} value={user}>
-                                                {user}
+                                            <SelectItem key={user.value} value={user.value}>
+                                                {user.label}
                                             </SelectItem>
                                         ))}
                                     </SelectGroup>

@@ -7,6 +7,7 @@ import (
 	"github.com/natsudotmv/ticktickpos/internal/config"
 	"github.com/natsudotmv/ticktickpos/internal/database"
 	"github.com/natsudotmv/ticktickpos/internal/handlers"
+	"github.com/natsudotmv/ticktickpos/internal/middleware"
 	"github.com/natsudotmv/ticktickpos/internal/models"
 	"github.com/natsudotmv/ticktickpos/internal/services"
 )
@@ -29,6 +30,10 @@ func main() {
 	mux.Handle("/menu", authService.AuthMiddleware(http.HandlerFunc(handlers.GetMenu)))
 	mux.HandleFunc("/auth/login", handlers.LoginHandler(authService))
 
+	// Apply CORS middleware
+	handler := middleware.CORSMiddleware(mux)
+
+	// Start the server
 	fmt.Println("Server listening on :8080")
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe(":8080", handler)
 }
