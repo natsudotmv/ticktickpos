@@ -19,6 +19,10 @@ export default {
                     DEFAULT: 'hsl(var(--color-card))',
                     foreground: 'hsl(var(--color-card-foreground))',
                 },
+                popover: {
+                    DEFAULT: 'hsl(var(--color-popover))',
+                    foreground: 'hsl(var(--color-popover-foreground))',
+                },
                 primary: {
                     DEFAULT: 'hsl(var(--color-primary))',
                     foreground: 'hsl(var(--color-primary-foreground))',
