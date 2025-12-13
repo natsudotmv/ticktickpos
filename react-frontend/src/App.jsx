@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
-import LoginPage from './pages/LoginPage.jsx'
-// import POSPage from './pages/POSPage'
+import LoginPage from './pages/LoginPage'
+import POSPage from './pages/POSPage'
 
 import './App.css'
 
@@ -15,8 +15,7 @@ function App() {
           path="/pos"
           element={
             <ProtectedRoute>
-              <div className='text-blue-950'>POS Page Test</div>
-              {/* <POSPage /> */}
+              <POSPage />
             </ProtectedRoute>
           }
         />
