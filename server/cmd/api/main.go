@@ -27,7 +27,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.HandleRoot)
 	mux.HandleFunc("/health", handlers.HealthCheckHandler)
-	mux.Handle("/menu", authService.AuthMiddleware(http.HandlerFunc(handlers.GetMenu)))
+	mux.HandleFunc("/menu", handlers.GetMenu)
 	mux.HandleFunc("/auth/login", handlers.LoginHandler(authService))
 
 	// Apply CORS middleware
