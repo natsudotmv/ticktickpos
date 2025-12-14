@@ -41,7 +41,7 @@ const MenuList = ({ onAdd }) => {
                 key={item.id}
                 className={!item.is_available ? "opacity-50" : ""}
               >
-                <CardContent className="p-3 space-y-2">
+                <CardContent className="p-3 space-y-2 flex flex-col justify-between h-full">
                   <div className="h-24 bg-muted rounded-md" />
 
                   <div className="font-medium">{item.name}</div>
@@ -52,7 +52,7 @@ const MenuList = ({ onAdd }) => {
 
                   <Button
                     size="sm"
-                    className="w-full"
+                    className="w-full mt-auto"
                     disabled={!item.is_available}
                     onClick={() => onAdd(item)}
                   >

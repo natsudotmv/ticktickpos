@@ -62,8 +62,12 @@ const POSPage = () => {
           Logout
         </Button>
       </header>
-
       <div className="flex flex-1 overflow-hidden">
+        {/* {!selectedTable && (
+            <div className="text-muted-foreground mb-4">
+              Select a table to start ordering
+            </div>
+        )} */}
         {/* Tables */}
         <aside className="w-64 border-r p-4">
           <TableSelector 
@@ -77,11 +81,6 @@ const POSPage = () => {
             !selectedTable && "opacity-50 pointer-events-none"
           }`}
         >
-             {!selectedTable && (
-            <div className="text-muted-foreground mb-4">
-              Select a table to start ordering
-            </div>
-          )}
           <MenuList onAdd={addToCart} />
         </main>
         {/* Cart */}
