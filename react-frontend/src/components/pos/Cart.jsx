@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-const Cart = ({ items, onAdd, onRemove }) => {
+const Cart = ({ items, onAdd, onRemove, table }) => {
   const total = items.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
@@ -9,7 +9,7 @@ const Cart = ({ items, onAdd, onRemove }) => {
 
   return (
     <div className="flex flex-col h-full">
-      <h2 className="font-medium mb-3">Cart</h2>
+      <h2 className="font-medium mb-3">Cart {table}</h2>
 
       <div className="flex-1 space-y-3 text-sm overflow-y-auto">
         {items.length === 0 && (
