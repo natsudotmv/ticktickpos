@@ -9,7 +9,23 @@ import { Button } from "@/components/ui/button";
 
 const POSPage = () => {
   const { logout } = useAuth();
+
+  const [selectedTable, setSelectedTable] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+
+
+  const handleTableSelect = (table) => {
+    if(selectedTable && cartItems.length > 0 && table !== selectedTable) {
+        const confirm = window.confirm(
+            "Switching tables will clear the current cart. Do you want to proceed?"
+        );
+        if(!confirm) return;
+        setCartItems([]);
+    }
+    setSelectedTable(table);
+  };
+
+
 
   const addToCart = (item) => {
     setCartItems((prev) => {
@@ -50,17 +66,28 @@ const POSPage = () => {
       <div className="flex flex-1 overflow-hidden">
         {/* Tables */}
         <aside className="w-64 border-r p-4">
-          <TableSelector />
+          <TableSelector 
+            selectedTable={selectedTable}
+            onSelect={handleTableSelect}
+          />
         </aside>
 
         {/* Menu */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className={`flex-1 p-4 overflow-y-auto ${
+            !selectedTable && "opacity-50 pointer-events-none"
+          }`}
+        >
+             {!selectedTable && (
+            <div className="text-muted-foreground mb-4">
+              Select a table to start ordering
+            </div>
+          )}
           <MenuList onAdd={addToCart} />
         </main>
-
         {/* Cart */}
         <aside className="w-80 border-l p-4">
           <Cart
+            table={selectedTable}
             items={cartItems}
             onAdd={addToCart}
             onRemove={removeFromCart}
